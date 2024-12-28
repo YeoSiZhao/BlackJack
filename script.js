@@ -184,25 +184,26 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
             {
                 finalComputerCount = computerHandCount;
             }
+            console.log("finalcomputercount", finalComputerCount);
             if (computerHandArray.length === 5) {
-                if (checkForFive(finalComputerCount)) {
-                    if (computerHandCount < 21)
-                    {
-                        displayResults.innerHTML = " Computer WU LONG, You lose!"
-                        displayComputerCount.innerHTML = computerHandCount;
-                        multiplier = -3;
-                    }
-                    else {
-                        displayResults.innerHTML = " Computer WU LONG more than 21, You win!"
-                        displayComputerCount.innerHTML = finalComputerCount;
-                        multiplier = -3;
-                    }
-                    renderCards(playerHandArray, ".js-player-cards");
-                    renderCards(computerHandArray, ".js-computer-cards");
-                    document.querySelector(".js-actions").innerHTML = "";
-                    finishBet();
-                    return;
+                if (checkForFive(finalComputerCount)) 
+                {
+
+                    displayResults.innerHTML = " Computer WU LONG, You lose!"
+                    displayComputerCount.innerHTML = finalComputerCount;
+                    multiplier = -3;
                 }
+                else 
+                {
+                    displayResults.innerHTML = " Computer WU LONG more than 21, You win!"
+                    displayComputerCount.innerHTML = finalComputerCount;
+                    multiplier = -3;
+                }
+                renderCards(playerHandArray, ".js-player-cards");
+                renderCards(computerHandArray, ".js-computer-cards");
+                document.querySelector(".js-actions").innerHTML = "";
+                finishBet();
+                return;
             } 
             checkCard(); 
         }
@@ -224,7 +225,7 @@ function reset() {
 
     deckOfCards = [
         "AD","AC","AH","AS",
-        "2D","2C","2H","2S", 
+        "2D","2C","2H","2S",
         "3D","3C","3H","3S",
         "4D","4C","4H","4S",
         "5D","5C","5H","5S",
@@ -389,14 +390,16 @@ function calcSecondaryCount(cardArray)
 }
 
 function displayEnd() {
+    console.log("enter display end");
     renderCards(playerHandArray, ".js-player-cards");
     renderCards(computerHandArray, ".js-computer-cards");
     document.querySelector(".js-actions").innerHTML = "";
-    if (finalComputerCount > 0 && finalComputerCount <= 21) {
+    if (finalComputerCount > 0 && computerHandCount > 21) {
         displayComputerCount.innerHTML = finalComputerCount;
     }
-    displayComputerCount.innerHTML = computerHandCount;
-    
+    else {
+        displayComputerCount.innerHTML = computerHandCount;
+    }
     finishBet();
 }
 
