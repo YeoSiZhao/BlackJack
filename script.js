@@ -102,7 +102,7 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
             acePresentComputer = true;
         }
     }
-    document.querySelector(".js-hit").addEventListener("click", () => {
+    document.querySelector(".js-hit").addEventListener("click", () => { 
         let newCard = getCard();
         playerHandArray.push(newCard);
         playerHandCount = countCard(playerHandArray);
@@ -120,16 +120,23 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
         }
     
         if (playerHandArray.length === 5) {
-            if (checkForFive(finalPlayerCount)) {
+            if (checkForFive(finalPlayerCount))
+            {
                 displayResults.innerHTML = " WU LONG, You win!"
+                multiplier = 3;
+            }
+            else 
+            {
+                displayResults.innerHTML = " WU LONG more than 21, You lose!"
+                multiplier = -3;
+            }
+                displayComputerCount.innerHTML = computerHandCount;
                 displayPlayerCount.innerHTML = finalPlayerCount;
                 renderCards(playerHandArray, ".js-player-cards");
                 renderCards(computerHandArray, ".js-computer-cards");
                 document.querySelector(".js-actions").innerHTML = "";
-                multiplier = 3;
                 finishBet();
                 return;
-            }
         } 
         checkCard();
         if (gameOver) {
@@ -137,7 +144,7 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
             return;
         } 
         renderCards(playerHandArray, ".js-player-cards");
-    })
+    });
     
     document.querySelector(".js-stand").addEventListener("click", () => {
         //finalise player hand (18 vs 9, will choose 18)
@@ -179,18 +186,20 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
             }
             if (computerHandArray.length === 5) {
                 if (checkForFive(finalComputerCount)) {
-                    displayResults.innerHTML = " Computer WU LONG, You lose!"
                     if (computerHandCount < 21)
                     {
+                        displayResults.innerHTML = " Computer WU LONG, You lose!"
                         displayComputerCount.innerHTML = computerHandCount;
+                        multiplier = -3;
                     }
                     else {
+                        displayResults.innerHTML = " Computer WU LONG more than 21, You win!"
                         displayComputerCount.innerHTML = finalComputerCount;
+                        multiplier = -3;
                     }
                     renderCards(playerHandArray, ".js-player-cards");
                     renderCards(computerHandArray, ".js-computer-cards");
                     document.querySelector(".js-actions").innerHTML = "";
-                    multiplier = -3;
                     finishBet();
                     return;
                 }
@@ -383,7 +392,7 @@ function displayEnd() {
     renderCards(playerHandArray, ".js-player-cards");
     renderCards(computerHandArray, ".js-computer-cards");
     document.querySelector(".js-actions").innerHTML = "";
-    if (finalComputerCount > 0) {
+    if (finalComputerCount > 0 && finalComputerCount <= 21) {
         displayComputerCount.innerHTML = finalComputerCount;
     }
     displayComputerCount.innerHTML = computerHandCount;
