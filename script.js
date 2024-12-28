@@ -118,18 +118,12 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
             finalPlayerCount = playerHandCount;
             displayPlayerCount.innerHTML = finalPlayerCount;
         }
-    
-        if (playerHandArray.length === 5) {
-            if (checkForFive(finalPlayerCount))
+        if (playerHandArray.length === 3) {
+            if (checkForTripleSeven(playerHandArray))
             {
-                displayResults.innerHTML = " WU LONG, You win!"
-                multiplier = 3;
-            }
-            else 
-            {
-                displayResults.innerHTML = " WU LONG more than 21, You lose!"
-                multiplier = -3;
-            }
+                console.log("Hello");
+                displayResults.innerHTML = "TRIPLE 7, You win!"
+                multiplier = 7;
                 displayComputerCount.innerHTML = computerHandCount;
                 displayPlayerCount.innerHTML = finalPlayerCount;
                 renderCards(playerHandArray, ".js-player-cards");
@@ -137,6 +131,27 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
                 document.querySelector(".js-actions").innerHTML = "";
                 finishBet();
                 return;
+            }
+        }
+    
+        if (playerHandArray.length === 5) {
+            if (checkForFive(finalPlayerCount))
+            {
+                displayResults.innerHTML = "WU LONG, You win!"
+                multiplier = 3;
+            }
+            else 
+            {
+                displayResults.innerHTML = "WU LONG more than 21, You lose!"
+                multiplier = -3;
+            }
+            displayComputerCount.innerHTML = computerHandCount;
+            displayPlayerCount.innerHTML = finalPlayerCount;
+            renderCards(playerHandArray, ".js-player-cards");
+            renderCards(computerHandArray, ".js-computer-cards");
+            document.querySelector(".js-actions").innerHTML = "";
+            finishBet();
+            return;
         } 
         checkCard();
         if (gameOver) {
@@ -185,6 +200,20 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
                 finalComputerCount = computerHandCount;
             }
             console.log("finalcomputercount", finalComputerCount);
+            if (computerHandArray.length === 3) {
+                if (checkForTripleSeven(computerHandArray))
+                {
+                    displayResults.innerHTML = "Computer TRIPLE 7, You lose!"
+                    multiplier = -7;
+                    displayComputerCount.innerHTML = computerHandCount;
+                    displayPlayerCount.innerHTML = finalPlayerCount;
+                    renderCards(playerHandArray, ".js-player-cards");
+                    renderCards(computerHandArray, ".js-computer-cards");
+                    document.querySelector(".js-actions").innerHTML = "";
+                    finishBet();
+                    return;
+                }
+            }
             if (computerHandArray.length === 5) {
                 if (checkForFive(finalComputerCount)) 
                 {
@@ -284,17 +313,31 @@ function countCard(cardArray) {
 }
 
 function checkForBlackJack () {
-    if (playerHandCount === 21 ||playerHandCount === 22) {
+    if (playerHandCount === 21)
+    {
         displayResults.innerHTML = "BlackJack! You win!"
         displayComputerCount.innerHTML = computerHandCount;
         gameOver = true;
         multiplier = 2;
     }
-    else if (computerHandCount === 21 ||computerHandCount === 22) {
+    else if (playerHandCount === 22)
+    {
+        displayResults.innerHTML = "BlackJack! You win!"
+        displayComputerCount.innerHTML = computerHandCount;
+        gameOver = true;
+        multiplier = 3;
+    }
+    else if (computerHandCount === 21) {
         displayResults.innerHTML = "Computer BlackJack! You lose!"
         displayPlayerCount.innerHTML = playerHandCount;
         gameOver = true;
         multiplier = -2;
+    }
+    else if (computerHandCount === 22) {
+        displayResults.innerHTML = "Computer BlackJack! You lose!"
+        displayPlayerCount.innerHTML = playerHandCount;
+        gameOver = true;
+        multiplier = -3;
     }
 }
 
@@ -422,4 +465,19 @@ function finishBet() {
     initialChips += earnings;
     document.querySelector(".js-hand-amount").innerHTML = initialChips;
     console.log(earnings);
+}
+
+function checkForTripleSeven(array) {
+    console.log("boo");
+    let sevenCount = 0;
+    array.forEach((card) => {
+        if (card.startsWith("7")) {
+            sevenCount += 1;
+        }
+    })
+    if (sevenCount === 3) {
+        gameOver = true;
+        return true;
+    }
+    return false;
 }
