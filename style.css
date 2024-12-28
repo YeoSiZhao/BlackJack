@@ -1,0 +1,140 @@
+/* General Reset */
+html { 
+    background: url(images/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+html, body {
+    overflow: hidden;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    gap: 20px; 
+    height: 100vh; 
+    margin: 0;
+}
+
+.js-player-cards, .js-computer-cards {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+    flex-wrap: wrap; 
+    width: 100%; 
+    padding: 10px;
+}
+
+.js-player-cards img, .js-computer-cards img {
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.js-player-count, .js-computer-count,.end {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+.end {
+    font-size: 50px;
+}
+
+
+.js-actions, .moves {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.moves {
+    position:fixed;
+    top:90%;
+    gap: 10px;
+    margin: 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff914d;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e06c00;
+}
+
+.betting-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #004d00; 
+    border-radius: 8px; 
+    padding: 10px 20px; 
+    width: 400px;
+    color: white;
+    font-family: Arial, sans-serif; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.current-amount-label {
+    margin-right: 20px;
+}
+
+.js-hand-amount {
+    text-align: center;
+}
+
+
+.current-bet-label {
+    position: fixed;
+    margin-left: 175px;
+}
+
+.bet-amount {
+    text-align: center;
+    font-weight: 100;
+}
+
+
+.slider {
+    -webkit-appearance: none; 
+    width: 100px; 
+    height: 8px; 
+    background: linear-gradient(90deg, #007acc, #0055aa); 
+    border-radius: 5px; 
+    outline: none; 
+    transition: background 0.3s ease-in-out; 
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px; 
+    height: 15px;
+    background: white; 
+    border: 2px solid #0055aa; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    transition: transform 0.2s ease-in-out; 
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2); 
+}
+
+
+
+

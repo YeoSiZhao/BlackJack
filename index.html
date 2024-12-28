@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <script src = "script.js" defer ></script>
+    <title>BlackJack</title>
+</head>
+<body>
+    <div class="grid-container"> 
+        <div class="end">
+            <div class="js-results"></div>
+        </div>
+
+        <div class="main-container">
+            <div class="computer-section">
+                <div class="js-computer-count"></div>
+                <div class="js-computer-cards"> </div>
+            </div>
+            <div class="player-section">
+                <div class="js-player-cards"></div>
+                <div class="js-player-count"></div>
+            </div>
+        </div>
+
+        <div class="js-actions"></div>
+
+        <div class="moves">
+            <div class="betting-panel">
+                <div class= current-amount-label>
+                    <strong>
+                        Current Amount:
+                    </strong>
+
+                    <div class="js-hand-amount"> </div>
+                </div>
+                <div class="current-bet-label"> 
+                    <strong>
+                        Current Bet: 
+                    </strong>
+                    
+                    <div class="bet-amount"> </div>
+                </div>
+    
+                <input type="range" min="1" max="100" value="50" class="slider">
+            </div>
+            
+            <button class="js-play-button"> Play </button>
+        </div>
+    </div>
+</body>
+</html>
