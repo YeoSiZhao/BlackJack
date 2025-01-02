@@ -134,7 +134,7 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
                 document.querySelector(".js-actions").innerHTML = "";
 
                 finishBet();
-                displayLog;
+                displayLog();
                 return;
             }
         }
@@ -158,11 +158,12 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
             renderCards(computerHandArray, ".js-computer-cards");
             document.querySelector(".js-actions").innerHTML = "";
             finishBet();
-            displayLog;
+            displayLog();
             return;
         } 
         checkCard();
-        if (gameOver) {
+        if (gameOver) //player more than 21 
+        {
             displayEnd();
             return;
         } 
@@ -207,7 +208,6 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
             {
                 finalComputerCount = computerHandCount;
             }
-            console.log("finalcomputercount", finalComputerCount);
             if (computerHandArray.length === 3) {
                 if (checkForTripleSeven(computerHandArray))
                 {
@@ -220,7 +220,7 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
                     renderCards(computerHandArray, ".js-computer-cards");
                     document.querySelector(".js-actions").innerHTML = "";
                     finishBet();
-                    displayLog;
+                    displayLog();
                     return;
                 }
             }
@@ -243,7 +243,7 @@ document.querySelector(".js-play-button").addEventListener("click", () => {
                 renderCards(computerHandArray, ".js-computer-cards");
                 document.querySelector(".js-actions").innerHTML = "";
                 finishBet();
-                displayLog;
+                displayLog();
                 return;
             } 
             checkCard(); 
